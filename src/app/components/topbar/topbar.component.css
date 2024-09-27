@@ -1,0 +1,28 @@
+.container {
+    position: fixed;
+    width: 100%;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    transition: all 0.7s;
+    z-index: 50;
+}
+
+.container.scrolled {
+    background-color: #ffffffef;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.181);
+}
+
+.container__coordinadora, .container__tanques {
+    font-size: 18px;
+}
+
+.container__coordinadora {
+    font-weight: 400;
+    color: rgb(51, 49, 49);
+}

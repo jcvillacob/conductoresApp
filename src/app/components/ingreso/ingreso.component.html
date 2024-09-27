@@ -1,0 +1,38 @@
+<form class="max-w-lg mx-auto p-8 py-16 rounded-lg" (ngSubmit)="onSubmit()" #form="ngForm">
+  <div class="mb-6">
+    <label for="year" class="block mb-2 text-sm font-medium text-gray-700">Año</label>
+    <select [(ngModel)]="year" id="year" name="year"
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5">
+      <option value="{{y}}" *ngFor="let y of years">{{ y }}</option>
+    </select>
+  </div>
+  <div class="mb-6">
+    <label for="months" class="block mb-2 text-sm font-medium text-gray-700">Mes</label>
+    <select [(ngModel)]="month" id="months" name="months"
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5">
+      <option value="{{i + 1}}" *ngFor="let mes of meses; let i = index">{{ mes }}</option>
+    </select>
+  </div>
+  <div class="mb-6">
+    <label for="id" class="block mb-2 text-sm font-medium text-gray-700">Cédula</label>
+    <input [(ngModel)]="cedula" type="text" id="id" name="id" required
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
+      placeholder="123456789">
+  </div>
+  <div class="mb-6">
+    <label for="news" class="block mb-2 text-sm font-medium text-gray-700">Novedad</label>
+    <select [(ngModel)]="novedad" id="news" name="news" required
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5">
+      <option selected disabled value="">Elige una opción</option>
+      <option value="{{novedad.id}}" *ngFor="let novedad of novedades">{{ novedad.nombre }}</option>
+    </select>
+  </div>
+  <div class="mb-6">
+    <label for="description" class="block mb-2 text-sm font-medium text-gray-700">Descripción de la Novedad</label>
+    <textarea [(ngModel)]="descripcion" id="description" name="description" rows="4"
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
+      placeholder="Escribe aquí..."></textarea>
+  </div>
+  <button type="submit" [disabled]="!form.valid"
+    class="text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Enviar</button>
+</form>

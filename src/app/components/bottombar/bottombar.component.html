@@ -1,0 +1,6 @@
+<div class="container">
+    <div class="container__element" *ngFor="let route of routes; index as i" [ngClass]="route.class" [routerLink]="route.routerLink">
+        <i class="element__icon" [ngClass]="route.icon"></i>
+        <h5 class="element__name">{{ route.name }}</h5>
+    </div>
+</div>

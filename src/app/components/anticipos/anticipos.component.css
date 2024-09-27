@@ -1,0 +1,93 @@
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-top: 90px;
+    padding-bottom: 90px;    
+}
+
+/* Filter */
+.container__filtro {
+    width: 90%;
+    display: flex;
+    margin: 20px auto;
+}
+
+.filtro__select {
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    border: 0;
+    outline: 0;
+    border-bottom: 1px solid #f92634;
+    background-color: transparent;
+}
+
+
+/* Anticipos Cards */
+.container__anticipos {
+    width: 90%;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-self: center;
+    gap: 30px;
+}
+
+.anticipos__anticipo {
+    width: 100%;
+    display: flex;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.192);
+}
+
+.anticipo__icon {
+    width: 30%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5%;
+    color: #f92634;
+    font-size: 55px;
+}
+
+.anticipo__data {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 5px;
+    padding: 15px;
+}
+
+.data__estado {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.estado__pendiente, .estado__legalizado {
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 8px;
+}
+
+.estado__pendiente {
+    background-color: #f92634;
+}
+
+.estado__legalizado {
+    background-color: #002930;
+}
+
+@media screen and (max-width: 400px) {
+    .data__estado, .estado__legalizado, .estado__pendiente {
+        font-size: 14px;
+        gap: 8px;
+    }
+    
+}

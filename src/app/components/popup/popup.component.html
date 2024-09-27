@@ -1,0 +1,21 @@
+<!-- popup.component.html -->
+<div class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex justify-center items-center">
+  <div class="bg-white rounded-lg shadow-xl overflow-hidden max-w-lg w-full m-4">
+    <!-- Aquí puedes poner la imagen -->
+    <img src="assets/feria.png" alt="Imagen descriptiva"
+      class="w-full object-contain h-72 md:h-auto px-1">
+
+    <div class="p-4">
+      <h2 class="text-2xl font-bold text-gray-800">Feria de Proveedores</h2>
+      <p class="mt-2 text-gray-600">Conoce todos los proveedores y productos de la feria.</p>
+    </div>
+
+    <div class="flex justify-evenly p-4 border-t border-gray-200">
+      <button class="bg-red-500 text-white rounded-lg px-4 py-2 hover:bg-red-700 focus:outline-none"><a
+          href="https://drive.google.com/drive/folders/1hr3_n4eFspvr9GthqHC6HnUbEaCzRCnb?usp=drive_link" target="_blank">Más
+          Información</a></button>
+      <button class="bg-gray-500 text-white rounded-lg px-4 py-2 hover:bg-gray-700 focus:outline-none"
+        (click)="closePopup()">Cerrar</button>
+    </div>
+  </div>
+</div>

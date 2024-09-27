@@ -1,0 +1,25 @@
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 90px;
+    padding-bottom: 90px;    
+}
+
+.container__img, .container__text {
+    width: 100%;
+    height: auto;
+    text-align: center;
+}
+
+.img__notfound {
+    width: 100%;
+}
+
+.text__title {
+    font-size: 22px;
+    color: rgb(24, 23, 23);
+}
+

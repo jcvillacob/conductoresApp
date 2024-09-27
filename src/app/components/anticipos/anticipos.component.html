@@ -1,0 +1,28 @@
+<app-loader *ngIf="loader"></app-loader>
+<div class="container" *ngIf="!loader && !noEncontrado">
+    <!-- Filtro -->
+    <div class="container__filtro">
+        <select name="filtro" id="filtro" class="filtro__select" [(ngModel)]="filtro" (change)="cambioFiltro(filtro)">
+            <option value="" class="select__option">Todos los Estados</option>
+            <option value="Legalizado" class="select__option">Legalizado</option>
+            <option value="Pendiente" class="select__option">Pendiente</option>
+        </select>
+    </div>
+
+    <!-- Cards -->
+    <div class="container__anticipos">
+        <div class="anticipos__anticipo" *ngFor="let anticipo of anticipos_filtro; index as i">
+            <div class="anticipo__icon"><i class="fa-regular fa-credit-card"></i></div>
+            <div class="anticipo__data">
+                <div class="data__manifiesto"> <strong>Manifiesto: </strong> {{ anticipo.manifiesto }} </div>
+                <div class="data__manifiesto"> <strong>Valor: </strong> ${{ anticipo.detalleAnticipos[0].valorAnticipo | number:'1.0-0' }} </div>
+                <div class="data__manifiesto"> <strong>Fecha: </strong> {{ anticipo.detalleAnticipos[0].fecha | date:'dd-MMMM-yyyy' }} </div>
+                <div class="data__estado"> 
+                    <strong>Estado: </strong>
+                    <div class="estado__pendiente" *ngIf="anticipo.detalleAnticipos[0].saldo != 0">PENDIENTE</div>
+                    <div class="estado__legalizado" *ngIf="anticipo.detalleAnticipos[0].saldo == 0">LEGALIZADO</div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-nodatos *ngIf="!loader && noEncontrado"></app-nodatos>

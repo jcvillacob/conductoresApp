@@ -1,0 +1,18 @@
+<app-popup *ngIf="showPopup" (onClose)="closePopup()"></app-popup>
+
+<div class="container">
+    <div class="container__photo"><img src="assets/userIcon.png" alt="User Icon" class="photo__icon"></div>
+    <div class="container__nombre">Hola, {{ datosPersonales.nombre }}</div>
+    <div class="container__editar">
+        <button class="editar__cerrar" (click)="cerrarSesion()">Cerrar Sesión</button>
+        <button class="editar__edit">Editar Perfil</button>
+    </div>
+    <div class="container__detalles">
+        <div class="detalles__title">Detalles Personales</div>
+        <div class="detalles__datos">
+            <div class="datos__dato"><i class="fa-solid fa-phone datos__icon"></i><strong class="rate__calif">Celular: </strong> {{ datosPersonales.celular }}</div>
+            <div class="datos__dato"><i class="fa-regular fa-address-card datos__icon"></i><strong class="rate__calif">Identificación: </strong> {{ datosPersonales.cedula }}</div>
+            <div class="datos__dato"><i class="fa-solid fa-briefcase datos__icon"></i><strong class="rate__calif">Email: </strong> <span class="email">{{ datosPersonales.email }}</span> </div>
+        </div>
+    </div>
+</div>

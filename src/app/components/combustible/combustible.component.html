@@ -1,0 +1,39 @@
+<!-- Formulario para subir archivo -->
+<form class="flex flex-col items-center p-6 max-w-2xl mx-auto py-8" (ngSubmit)="onSubmit()">
+  <label class="block text-sm font-medium mb-2" for="file_input">Subir Excel con los cruces</label>
+  <input
+    class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer focus:outline-none focus:border-transparent"
+    id="file_input" type="file"
+    accept="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    (change)="onFileChange($event)">
+    <button type="submit" *ngIf="excelData.length" class="px-14 py-2 bg-red-600 text-white rounded-lg mt-4 hover:bg-red-700"> Enviar </button>
+</form>
+
+<!-- Tabla para mostrar los datos -->
+<div class="overflow-x-auto relative shadow-md sm:rounded-lg mb-14"  *ngIf="excelData.length">
+  <table class="w-full text-sm text-left text-gray-500">
+    <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+      <tr>
+        <th scope="col" class="py-3 px-6">Tiquete</th>
+        <th scope="col" class="py-3 px-6">Cedula</th>
+        <th scope="col" class="py-3 px-6">Placa</th>
+        <th scope="col" class="py-3 px-6">Fecha</th>
+        <th scope="col" class="py-3 px-6">Valor</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="bg-white border-b" *ngFor="let item of excelData">
+        <td class="py-4 px-6">{{item.tiquete}}</td>
+        <td class="py-4 px-6">{{item.cedula}}</td>
+        <td class="py-4 px-6">{{item.placa}}</td>
+        <td class="py-4 px-6">{{item.fecha | date:'dd/MM/yyyy':'UTC'}}</td>
+        <td class="py-4 px-6">$ {{ item.valor | number:'1.0-0' }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div *ngIf="envio" class="flex my-10 w-full">
+  <div class="mx-auto bg-green-700 text-white p-10 rounded-xl font-semibold"> <i class="fa-solid fa-circle-check"></i> ENVIADO CORRECTAMENTE</div>
+</div>

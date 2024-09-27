@@ -1,0 +1,128 @@
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 90px;
+    padding-bottom: 90px;    
+}
+
+.container__title {
+    padding: 20px;
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.container__gastos {
+    width: 90%;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-self: center;
+    gap: 30px;
+}
+
+.gastos__gasto {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.192);
+}
+
+.gasto__icon {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5%;
+    color: #f92634;
+    font-size: 55px;
+}
+
+.gasto__data {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin: 0 auto;
+    gap: 5px;
+    padding: 15px;
+}
+
+
+
+/* Pdf Button */
+.container__pdf {
+    position: fixed;
+    bottom: 80px;
+    right: 10px;
+    padding: 12px 16px;
+    font-size: 25px;
+    border-radius: 50%;
+    color: #fff;
+    background-color: #f92634;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.178);
+    z-index: 99999;
+}
+
+.container__pdf:hover {
+    cursor: pointer;
+}
+
+
+/* Modal */
+.container__modal {
+    position: fixed;
+    width: 95%;
+    top: 100%;
+    left: 2.5%;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 8px 8px 10px rgba(0, 0, 0, 0.192);
+    transition: all 0.7s ease-out;
+}
+
+.-active-modal {
+    top: 20%
+}
+
+.modal__close {
+    position: absolute;
+    top: 0%;
+    right: 5%;
+    font-size: 25px;
+    padding: 10px;
+}
+
+.modal__title {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.modal__month {
+    width: 80%;
+    display: flex;
+    margin: auto;
+    outline: none;
+    font-size: 18px;
+    padding: 10px;
+    border: 0;
+    border-bottom: 1px solid #f92634;
+}
+
+.modal__button {
+    background-color: #BE0512;
+    color: #fff;
+    padding: 15px 20px;
+    border: 0;
+    border-radius: 15px;
+    font-size: 16px;
+}

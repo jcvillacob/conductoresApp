@@ -1,0 +1,5 @@
+<div class="container min-w-full">
+    <app-topbar *ngIf="cedula"></app-topbar>
+    <router-outlet></router-outlet>
+    <app-bottombar *ngIf="cedula"></app-bottombar>
+</div>
