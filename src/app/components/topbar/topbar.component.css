@@ -1,6 +1,7 @@
 .container {
     position: fixed;
     width: 100%;
+    max-width: 600px;
     height: 80px;
     display: flex;
     flex-direction: column;
