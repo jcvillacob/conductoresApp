@@ -4,13 +4,14 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { API_CONFIG } from 'src/api.config';
 import { Personales } from '../models/personales';
+import { environment } from 'src/environments/environments';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
-  private apiUrl = `${API_CONFIG.baseUrl}`;
-  private token: string = API_CONFIG.token;
+  private apiUrl = `${environment.baseUrl}`;
+  private token: string = environment.token;
   private cedula!: string;
   private datosPersonales!: Personales;
   private showPopup: boolean = true;

@@ -3,12 +3,13 @@ import { Injectable } from '@angular/core';
 import { LoginService } from './login.service';
 import { API_CONFIG } from 'src/api.config';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environments';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CalificacionService {
-  private apiUrl = `${API_CONFIG.calificacionUrl}`;
+  private apiUrl = `${environment.calificacionUrl}`;
   private cedula!: string;
 
   constructor(private http: HttpClient, private loginService: LoginService) {
