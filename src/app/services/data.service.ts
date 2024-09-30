@@ -5,13 +5,14 @@ import { API_CONFIG } from 'src/api.config';
 import { LoginService } from './login.service';
 import { Anticipo } from './../models/anticipo'
 import { Gasto } from '../models/gasto';
+import { environment } from 'src/environments/environments';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
-  private apiUrl = `${API_CONFIG.baseUrl}`;
-  private token: string = API_CONFIG.token;
+  private apiUrl = `${environment.baseUrl}`;
+  private token: string = environment.token;
   private cedula!: string;
 
   constructor(private http: HttpClient, private loginService: LoginService) {
@@ -44,7 +45,7 @@ export class DataService {
         })
       );
   }
-  
+
 
 
   getGastos(): Observable<Gasto[]> {
