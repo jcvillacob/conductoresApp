@@ -1,37 +1,41 @@
 <app-loader *ngIf="loader"></app-loader>
 <div class="container" *ngIf="!loader">
-    <h3 class="container__title">Liquidaciones de {{mes}}</h3>
-    <div class="container__gastos">
-        <div class="gastos__gasto" *ngFor="let gasto of gastos_mensual; index as i">
-            <div class="gasto__icon"><i class="fa-solid fa-scale-balanced"></i></div>
-            <div class="gasto__data">
-                <div class="data__manifiesto"> <strong>Manifiesto: </strong> {{ gasto.manifiesto }} </div>
-                <div class="data__manifiesto"> <strong>Ruta: </strong> {{ gasto.ruta }} </div>
-                <div class="data__manifiesto"> <strong>Placa: </strong> {{ gasto.placa }} </div>
-                <div class="data__manifiesto"> <strong>Valor Anticipo: </strong> ${{ gasto.vrAnticipo | number:'1.0-0'  }} </div>
-                <div class="data__manifiesto"> <strong>Valor Gasto: </strong> ${{ gasto.vrGasto | number:'1.0-0'  }} </div>
-                <div class="data__manifiesto"> <strong>Valor Bonificación: </strong> ${{ gasto.vrBonificacion | number:'1.0-0'  }} </div>
-                <div class="data__manifiesto"> <strong>Valor Alcance: </strong> ${{ gasto.vrAlcance | number:'1.0-0'  }} </div>
-                <div class="data__manifiesto"> <strong>Bonificación (40%): </strong> ${{ gasto.bonI_40 | number:'1.0-0'  }} </div>
-                <div class="data__manifiesto"> <strong>Renta (60%): </strong> ${{ gasto.rentA_60 | number:'1.0-0'  }} </div>
-                <div class="data__manifiesto"> <strong>Fecha Manifiesto: </strong> {{ gasto.fechaManifiesto | date:'dd-MMMM-yyyy' }} </div>
-                <div class="data__manifiesto"> <strong>Fecha Liquidación: </strong> {{ gasto.fechaLiquidacion | date:'dd-MMMM-yyyy' }} </div>
+  <h3 class="container__title">Liquidaciones de {{mes}}</h3>
+  <div class="container__gastos">
+    <div class="gastos__gasto" *ngFor="let gasto of gastos_mensual; index as i">
+      <div class="gasto__icon"><i class="fa-solid fa-scale-balanced"></i></div>
+      <div class="gasto__data">
+        <div class="data__manifiesto"> <strong>Manifiesto: </strong> {{ gasto.manifiesto }} </div>
+        <div class="data__manifiesto"> <strong>Ruta: </strong> {{ gasto.ruta }} </div>
+        <div class="data__manifiesto"> <strong>Placa: </strong> {{ gasto.placa }} </div>
+        <div class="data__manifiesto"> <strong>Valor Anticipo: </strong> ${{ gasto.vrAnticipo | number:'1.0-0' }} </div>
+        <div class="data__manifiesto"> <strong>Valor Gasto: </strong> ${{ gasto.vrGasto | number:'1.0-0' }} </div>
+        <div class="data__manifiesto"> <strong>Valor Bonificación: </strong> ${{ gasto.vrBonificacion | number:'1.0-0'
+          }} </div>
+        <div class="data__manifiesto"> <strong>Valor Alcance: </strong> ${{ gasto.vrAlcance | number:'1.0-0' }} </div>
+        <div class="data__manifiesto"> <strong>Bonificación (40%): </strong> ${{ gasto.bonI_40 | number:'1.0-0' }}
         </div>
+        <div class="data__manifiesto"> <strong>Renta (60%): </strong> ${{ gasto.rentA_60 | number:'1.0-0' }} </div>
+        <div class="data__manifiesto"> <strong>Fecha Manifiesto: </strong> {{ gasto.fechaManifiesto |
+          date:'dd-MMMM-yyyy' }} </div>
+        <div class="data__manifiesto"> <strong>Fecha Liquidación: </strong> {{ gasto.fechaLiquidacion |
+          date:'dd-MMMM-yyyy' }} </div>
+      </div>
     </div>
-    <div class="container__pdf" (click)="modal()">
-        <i class="fa-regular fa-file-lines"></i>
+    <div class="container__pdf flex justify-center items-center w-12 h-12" (click)="modal()">
+      <i class="fa-regular fa-file-lines"></i>
     </div>
 
     <div class="container__modal" [ngClass]="{'-active-modal' : modalB}">
-        <div class="modal__close"  (click)="modal()"><i class="fa-solid fa-xmark"></i></div>
-        <h2 class="modal__title">Descargar Certificado</h2>
-        <select name="month" id="month" class="modal__month" (change)="selectedMonth()" [(ngModel)]="paraPDF2">
-            <option value="-1" class="mont__option">Selecciona un Mes</option>
-            <option [value]="mesEscoger - 1" class="mont__option">{{ mesesEnEspanol[mesEscoger - 1] }}</option>
-            <option [value]="mesEscoger - 2" class="mont__option">{{ mesesEnEspanol[mesEscoger - 2] }}</option>
-            <option [value]="mesEscoger - 3" class="mont__option">{{ mesesEnEspanol[mesEscoger - 3] }}</option>
-        </select>
-        <button class="modal__button" (click)="exportPDF()">Descargar</button>
+      <div class="modal__close" (click)="modal()"><i class="fa-solid fa-xmark"></i></div>
+      <h2 class="modal__title">Descargar Certificado</h2>
+      <select name="month" id="month" class="modal__month" (change)="selectedMonth()" [(ngModel)]="paraPDF2">
+        <option value="-1" class="mont__option">Selecciona un Mes</option>
+        <option [value]="mesEscoger - 1" class="mont__option">{{ mesesEnEspanol[mesEscoger - 1] }}</option>
+        <option [value]="mesEscoger - 2" class="mont__option">{{ mesesEnEspanol[mesEscoger - 2] }}</option>
+        <option [value]="mesEscoger - 3" class="mont__option">{{ mesesEnEspanol[mesEscoger - 3] }}</option>
+      </select>
+      <button class="modal__button" (click)="exportPDF()">Descargar</button>
     </div>
-</div>
-<app-nodatos *ngIf="!loader && noEncontrado" style="margin-top: -120px;"></app-nodatos>
+  </div>
+  <app-nodatos *ngIf="!loader && noEncontrado" style="margin-top: -120px;"></app-nodatos>

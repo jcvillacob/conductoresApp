@@ -1,5 +1,7 @@
-<div class="container min-w-full">
+<div class="content" [ngClass]="{'logged' : cedula}">
+  <div class="container">
     <app-topbar *ngIf="cedula"></app-topbar>
     <router-outlet></router-outlet>
     <app-bottombar *ngIf="cedula"></app-bottombar>
+  </div>
 </div>
