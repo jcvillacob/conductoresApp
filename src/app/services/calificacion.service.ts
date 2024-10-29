@@ -32,7 +32,7 @@ export class CalificacionService {
 
   getCruces(): Observable<any[]> {
     this.cedula = this.loginService.getCedula();
-    return this.http.get<any[]>(`${this.apiUrl}/cruces?cedula=${this.cedula}`);
+    return this.http.get<any[]>(`${this.apiUrl}/cruces?cedula=${this.cedula}&pageNumber=1&pageSize=30`);
   }
 
   setCruces(data: any): Observable<any[]> {
