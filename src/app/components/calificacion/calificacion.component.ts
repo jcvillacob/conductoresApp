@@ -13,9 +13,11 @@ export class CalificacionComponent implements AfterViewInit {
   cruces: any[] = [];
   isModalVisible: boolean = false;
   mesAnterior!: string;
+  mesActual!: string;
   cumplimiento = 0;
   limite = 70;
-  novedades: any[] = []
+  novedades: any[] = [];
+  nombresDeMeses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
 
   constructor(private calificacionService: CalificacionService, private cdr: ChangeDetectorRef) {
     // Obtener el mes anterior
@@ -23,12 +25,12 @@ export class CalificacionComponent implements AfterViewInit {
     const mesActual = fechaActual.getMonth();
     const año = mesActual === 0  ? fechaActual.getFullYear() -1 : fechaActual.getFullYear();
     const mesAnterior = mesActual === 0 ? 11 : mesActual - 1;
-    const nombresDeMeses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
-    this.mesAnterior = nombresDeMeses[mesAnterior];
+    this.mesAnterior = this.nombresDeMeses[mesAnterior];
+    this.mesActual = this.nombresDeMeses[mesActual];
 
     // Para las calificaciones
-    this.calificacionService.getCruces().subscribe(data => {
-      this.cruces = data;
+    this.calificacionService.getCruces().subscribe((data: any) => {
+      this.cruces = data['data'];
       this.calificacionService.getNovedades(mesAnterior+1, año).subscribe((datos: any) => {
         this.novedades = datos.data;
         // Suma de cumplimiento
