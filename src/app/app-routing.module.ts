@@ -3,13 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { AnticiposComponent } from './components/anticipos/anticipos.component';
-import { ProfileComponent } from './components/profile/profile.component';
 import { GastosComponent } from './components/gastos/gastos.component';
 import { HelpComponent } from './components/help/help.component';
 import { cedulaGuardGuard } from './cedula-guard.guard';
 import { CalificacionComponent } from './components/calificacion/calificacion.component';
 import { IngresoComponent } from './components/ingreso/ingreso.component';
 import { CombustibleComponent } from './components/combustible/combustible.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
