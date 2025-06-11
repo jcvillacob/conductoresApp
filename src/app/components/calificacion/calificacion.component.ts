@@ -1,12 +1,17 @@
-import { Component, ViewChild, ElementRef, AfterViewInit, ChangeDetectorRef } from '@angular/core';
+import {
+  Component,
+  ViewChild,
+  ElementRef,
+  AfterViewInit,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { Chart, registerables } from 'chart.js';
 import { CalificacionService } from 'src/app/services/calificacion.service';
-
 
 @Component({
   selector: 'app-calificacion',
   templateUrl: './calificacion.component.html',
-  styleUrls: ['./calificacion.component.css']
+  styleUrls: ['./calificacion.component.css'],
 })
 export class CalificacionComponent implements AfterViewInit {
   @ViewChild('chartCanvas') chartCanvas!: ElementRef<HTMLCanvasElement>;
@@ -17,41 +22,72 @@ export class CalificacionComponent implements AfterViewInit {
   cumplimiento = 0;
   limite = 70;
   novedades: any[] = [];
-  nombresDeMeses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+  nombresDeMeses = [
+    'Enero',
+    'Febrero',
+    'Marzo',
+    'Abril',
+    'Mayo',
+    'Junio',
+    'Julio',
+    'Agosto',
+    'Septiembre',
+    'Octubre',
+    'Noviembre',
+    'Diciembre',
+  ];
 
-  constructor(private calificacionService: CalificacionService, private cdr: ChangeDetectorRef) {
+  constructor(
+    private calificacionService: CalificacionService,
+    private cdr: ChangeDetectorRef
+  ) {
     // Obtener el mes anterior
     const fechaActual = new Date();
     const mesActual = fechaActual.getMonth();
-    const año = mesActual === 0  ? fechaActual.getFullYear() -1 : fechaActual.getFullYear();
+    const año =
+      mesActual === 0
+        ? fechaActual.getFullYear() - 1
+        : fechaActual.getFullYear();
     const mesAnterior = mesActual === 0 ? 11 : mesActual - 1;
     this.mesAnterior = this.nombresDeMeses[mesAnterior];
     this.mesActual = this.nombresDeMeses[mesActual];
 
     // Para las calificaciones
     this.calificacionService.getCruces().subscribe((data: any) => {
-      this.cruces = data['data'];
-      this.calificacionService.getNovedades(mesAnterior+1, año).subscribe((datos: any) => {
-        this.novedades = datos.data;
-        // Suma de cumplimiento
-        this.cumplimiento = 100 - this.novedades.reduce((sum, item) => {
-          return sum + (item.peso);
-        }, 0);
+      this.cruces = data.data
+        // Opcional: convertir Fecha a Date para no hacerlo en cada comparación
+        .map((c: any)=> ({ 
+          ...c, 
+          Fecha: new Date(c.Fecha) 
+        }))
+        // Orden descendente: de la más reciente a la más antigua
+        .sort((a: any, b: any) => 
+          (b.Fecha as Date).getTime() - (a.Fecha as Date).getTime()
+        );
 
-        // Crear el gráfico
-        this.createChart();
+      this.calificacionService
+        .getNovedades(mesAnterior + 1, año)
+        .subscribe((datos: any) => {
+          this.novedades = datos.data;
+          // Suma de cumplimiento
+          this.cumplimiento =
+            100 -
+            this.novedades.reduce((sum, item) => {
+              return sum + item.peso;
+            }, 0);
 
-        this.cdr.detectChanges();
-      })
+          // Crear el gráfico
+          this.createChart();
 
+          this.cdr.detectChanges();
+        });
     });
 
     // Para el gráfico
     Chart.register(...registerables);
   }
 
-  ngAfterViewInit() {
-  }
+  ngAfterViewInit() {}
 
   createChart() {
     const context = this.chartCanvas.nativeElement.getContext('2d');
@@ -77,23 +113,41 @@ export class CalificacionComponent implements AfterViewInit {
           cutout: '70%',
           plugins: {
             legend: {
-              display: true
+              display: true,
             },
             tooltip: {
-              enabled: true
-            }
+              enabled: true,
+            },
           },
           animation: {
             animateRotate: true,
-            animateScale: true
-          }
+            animateScale: true,
+          },
         },
       });
     }
   }
 
-  get totalValor() {
-    return this.cruces.reduce((acc, cruce) => acc + cruce.Valor, 0);
+  get totalValor(): number {
+    const currentYear = new Date().getFullYear();
+
+    // Extraemos los meses disponibles en el año actual
+    const mesesDelAño = this.cruces
+      .filter((c) => c.Año === currentYear)
+      .map((c) => c.Mes);
+
+    if (mesesDelAño.length === 0) {
+      // No hay datos del año en curso
+      return 0;
+    }
+
+    // Determinamos el último mes registrado
+    const ultimoMes = Math.max(...mesesDelAño);
+
+    // Sumamos solo los valores del último mes del año actual
+    return this.cruces
+      .filter((c) => c.Año === currentYear && c.Mes === ultimoMes)
+      .reduce((acc, c) => acc + c.Valor, 0);
   }
 
   descargarComprobante() {
